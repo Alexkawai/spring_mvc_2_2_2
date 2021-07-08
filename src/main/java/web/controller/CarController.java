@@ -14,12 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/cars")
 public class CarController {
     Service service = new ServiceImpl();
-    @GetMapping(value = "/cars")
-    public String printWelcome(@RequestParam("count") int count, ModelMap model) {
+
+    @GetMapping
+    public String printWelcome(@RequestParam(value = "count",required = false) Integer count, ModelMap model) {
+        if(count==null){count=5;}
         List<Car> cars = service.geting(count);
         model.addAttribute("cars", cars);
         return "cars";
     }
+
+
 }
