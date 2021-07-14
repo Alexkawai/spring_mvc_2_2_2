@@ -19,8 +19,11 @@ public class ServiceImpl implements Service{
     }
     @Override
     public List<Car> geting(int count) {
-            List<Car> newlist = getCars();
-            return newlist.stream().limit(count).collect(Collectors.toList());
+            if (count <= 5) {
+                return getCars().stream().limit(count).collect(Collectors.toList());
+            } else {
+                return getCars();
+            }
     }
 
     public ServiceImpl() {

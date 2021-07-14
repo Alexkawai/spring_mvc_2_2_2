@@ -20,7 +20,7 @@ public class CarController {
 
     @GetMapping
     public String printWelcome(@RequestParam(value = "count",required = false) Integer count, ModelMap model) {
-        if(count==null){count=5;}
+        count = count == null ? 5: count;
         List<Car> cars = service.geting(count);
         model.addAttribute("cars", cars);
         return "cars";
